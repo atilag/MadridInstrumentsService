@@ -11,9 +11,8 @@ at all.
 This is the endpoint for loading a program: 
 
 ```
-POST /load_program
+POST /program/load
 ```
-
 
 The input of the service is a sequence of pulses and values that will map to some simple algebraic
 operations: Summation, Multiplication and Division.
@@ -21,27 +20,20 @@ operations: Summation, Multiplication and Division.
 The format of the input JSON should follow this schema:
 
 ```
+{
    "program_code":[
-      "Madrid_initial_state_pulse",
       10,
-      "Madrid_pulse_1",
-      "Madrid_pulse_2",
+      "Madrid_initial_state_pulse",
       120,
-      "Madrid_pulse_2",
-      "Madrid_pulse_1",
       "Madrid_pulse_1",
       3,
       "Madrid_pulse_2",
       "Madrid_pulse_2",
-      2
+      2,
+      "Madrid_pulse_2",
+      "Madrid_pulse_1"
    ]
-```
-
-
-This is the endpoint for triggering the execution of the program:
-
-```
-GET /run_program/<program_id>
+}
 ```
 
 
@@ -52,6 +44,20 @@ In case of success, the HTTP code will be 200 and the response JSON will be:
 }
 ```
 
+This is the endpoint for triggering the execution of the program:
+
+```
+GET /program/run/<program_id>
+```
+
+In case of success, the HTTP code will be 200 and the response JSON will be:
+```
+{
+     "result": 195
+}
+```
+
+
 ### Workflow
 
 Due to some hardware imposed constrains, we always need to load the program first, and then
@@ -61,8 +67,8 @@ later call to the `/run_program` endpoint so the service identifies the program 
 
 This implies two REST calls:
 ```
-POST /load_program {...}
-GET /run_program/<program_id>
+POST /program/load {...}
+GET /program/run/<program_id>
 ```
 
 ## Installing and running the application

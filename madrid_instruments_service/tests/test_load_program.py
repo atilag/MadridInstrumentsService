@@ -16,7 +16,10 @@ class TestLoadProgram(unittest.TestCase):
         self.client = TestClient(app)
 
     def test_load_program_returns_ok(self):
-        pulse_sequence = '{"program_code": [10,  "Madrid_initial_state_pulse", 120, "Madrid_pulse_1", 3, "Madrid_pulse_2", "Madrid_pulse_2", 2, "Madrid_pulse_2", "Madrid_pulse_1"]}'
+        pulse_sequence = (
+            '{"program_code": [10,  "Madrid_initial_state_pulse", 120, "Madrid_pulse_1", 3,'
+            '"Madrid_pulse_2", "Madrid_pulse_2", 2, "Madrid_pulse_2", "Madrid_pulse_1"]}'
+        )
         json_pulses = json.loads(pulse_sequence)
         response = self.client.post("/program/load", json=json_pulses)
         assert response.status_code == 200
