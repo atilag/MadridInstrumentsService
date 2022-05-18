@@ -20,20 +20,20 @@ operations: Summation, Multiplication and Division.
 The format of the input JSON should follow this schema:
 
 ```
+{
    "program_code":[
-      "Madrid_initial_state_pulse",
       10,
-      "Madrid_pulse_1",
-      "Madrid_pulse_2",
+      "Madrid_initial_state_pulse",
       120,
-      "Madrid_pulse_2",
-      "Madrid_pulse_1",
       "Madrid_pulse_1",
       3,
       "Madrid_pulse_2",
       "Madrid_pulse_2",
-      2
+      2,
+      "Madrid_pulse_2",
+      "Madrid_pulse_1"
    ]
+}
 ```
 
 
